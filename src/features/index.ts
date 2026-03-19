@@ -1,0 +1,6 @@
+export { default as Landing } from './landing/screens/landing';
+export { default as Animation1 } from './animation-1/screens/animation-1';
+export { default as Animation2 } from './animation-2/screens/animation-2';
+export { default as Animation3 } from './animation-3/screens/animation-3';
+export { default as Animation4 } from './animation-4/screens/animation-4';
+export { default as Animation5 } from './animation-5/screens/animation-5';

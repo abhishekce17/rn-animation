@@ -1,0 +1,1 @@
+export { GlobalSafeAreaView } from './GlobalSafeAreaView';
