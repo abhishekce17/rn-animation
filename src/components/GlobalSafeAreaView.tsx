@@ -21,7 +21,7 @@ export const GlobalSafeAreaView = ({
   children,
   style,
   backgroundColor = '#ffffff',
-  barStyle = 'default',
+  barStyle = 'dark-content',
   unsafeTop = false,
   unsafeBottom = false,
 }: ScreenProps) => {
@@ -40,11 +40,7 @@ export const GlobalSafeAreaView = ({
         style, // Allow custom styles to override
       ]}
     >
-      <StatusBar
-        barStyle={barStyle}
-        backgroundColor="transparent"
-        translucent
-      />
+      <StatusBar barStyle={barStyle} translucent />
       {children}
     </View>
   );

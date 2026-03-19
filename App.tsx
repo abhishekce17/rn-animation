@@ -3,11 +3,14 @@ import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { RootNavigation } from './src/navigation/RootNavigation';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GlobalSafeAreaView } from './src/components';
 function App() {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <RootNavigation />
+        <GlobalSafeAreaView>
+          <RootNavigation />
+        </GlobalSafeAreaView>
       </GestureHandlerRootView>
     </SafeAreaProvider>
   );
