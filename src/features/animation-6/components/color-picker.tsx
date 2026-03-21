@@ -7,7 +7,11 @@ import {
 import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  interpolateColor,
+  SharedValue,
+  useAnimatedReaction,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
   withSpring,
   withTiming,
@@ -16,9 +20,15 @@ import Animated, {
 interface ColorPickerProps extends LinearGradientProps {
   style?: any;
   width: number;
+  selectedColor: SharedValue<string>;
 }
 
-export const ColorPicker = ({ style, width, ...props }: ColorPickerProps) => {
+export const ColorPicker = ({
+  style,
+  width,
+  selectedColor,
+  ...props
+}: ColorPickerProps) => {
   // 1. The High-Speed Delta Driver (Isolated)
   const translateX = useSharedValue(0);
 
@@ -26,6 +36,20 @@ export const ColorPicker = ({ style, width, ...props }: ColorPickerProps) => {
   const popState = useSharedValue({ y: 0, scale: 1 });
 
   const MAX_TRANSLATE_X = width - 40;
+
+  const derivedColor = useDerivedValue(() => {
+    const color = withTiming(
+      interpolateColor(
+        translateX.value,
+        props.colors.map(
+          (_, i) => (i / (props.colors.length - 1)) * MAX_TRANSLATE_X,
+        ),
+        props.colors as string[],
+      ),
+      { duration: 150 },
+    );
+    return color;
+  });
 
   const pickerStyle = useAnimatedStyle(() => {
     return {
@@ -38,13 +62,40 @@ export const ColorPicker = ({ style, width, ...props }: ColorPickerProps) => {
     };
   });
 
+  useAnimatedReaction(
+    () => derivedColor.value,
+    (newColor, previousColor) => {
+      if (newColor !== previousColor) {
+        // Direct GPU memory mutation! Zero bridge crossings.
+        selectedColor.value = newColor;
+      }
+    },
+  );
+
+  const internalPickerStyle = useAnimatedStyle(() => {
+    // const bgColor = `hsl(${
+    //   (translateX.value / MAX_TRANSLATE_X) * 360
+    // }, 100%, 50%)`; // In this logic i dont need interpolateColor because the color is directly derived from the translateX value, which is already being clamped to the range of 0 to MAX_TRANSLATE_X. The hue is calculated as a direct proportion of translateX to MAX_TRANSLATE_X, resulting in a smooth transition through the color spectrum as the thumb moves.
+
+    // const bgColor = interpolateColor(
+    //   translateX.value,
+    //   props.colors.map(
+    //     (_, i) => (i / (props.colors.length - 1)) * MAX_TRANSLATE_X,
+    //   ),
+    //   props.colors as string[],
+    // );
+    return {
+      backgroundColor: derivedColor.value,
+    };
+  });
+
   const panGesture = Gesture.Pan()
     .onBegin(event => {
       // 1. onBegin fires instantly on touch (even for a quick tap)
       // We animate the thumb smoothly to the exact tap location.
       translateX.value = withTiming(
         Math.max(0, Math.min(event.x - 20, MAX_TRANSLATE_X)),
-        { duration: 150 },
+        { duration: 300 },
       );
 
       // Fire the pop-up spring
@@ -76,7 +127,9 @@ export const ColorPicker = ({ style, width, ...props }: ColorPickerProps) => {
             <LinearGradient {...props} />
           </RoundedRect>
         </Canvas>
-        <Animated.View style={[styles.picker, pickerStyle]} />
+        <Animated.View style={[styles.picker, pickerStyle]}>
+          <Animated.View style={[styles.internalPicker, internalPickerStyle]} />
+        </Animated.View>
       </View>
     </GestureDetector>
   );
@@ -93,10 +146,18 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
     elevation: 4,
     shadowColor: '#000',
     shadowOpacity: 0.3,
     shadowRadius: 4,
     shadowOffset: { width: 0, height: 2 },
+  },
+  internalPicker: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: 'lightgray',
   },
 });

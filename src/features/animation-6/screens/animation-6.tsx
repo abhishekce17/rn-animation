@@ -1,6 +1,10 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { ColorPicker } from '../components/color-picker';
 import { vec } from '@shopify/react-native-skia';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 
 const COLORS = [
   'red',
@@ -20,9 +24,17 @@ const { width } = Dimensions.get('window');
 const calculatedWidth = width * 0.9;
 
 const animation6 = () => {
+  const activeColor = useSharedValue('#ff0000');
+  const topCircleStyle = useAnimatedStyle(() => {
+    return {
+      backgroundColor: activeColor.value,
+    };
+  });
   return (
     <>
-      <View style={styles.topContainer}></View>
+      <View style={styles.topContainer}>
+        <Animated.View style={[styles.topCirlce, topCircleStyle]} />
+      </View>
       <View style={styles.bottomContainer}>
         <ColorPicker
           colors={COLORS}
@@ -30,6 +42,7 @@ const animation6 = () => {
           end={vec(calculatedWidth, 128)}
           width={calculatedWidth}
           style={styles.gradientCanvas}
+          selectedColor={activeColor}
         />
       </View>
     </>
@@ -37,9 +50,17 @@ const animation6 = () => {
 };
 
 const styles = StyleSheet.create({
+  topCirlce: {
+    width: calculatedWidth * 0.8,
+    height: calculatedWidth * 0.8,
+    borderRadius: calculatedWidth * 0.4,
+    backgroundColor: 'white',
+  },
   topContainer: {
     flex: 3,
-    backgroundColor: '#fff',
+    backgroundColor: BACKGROUND_COLORS,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   bottomContainer: {
     flex: 1,
