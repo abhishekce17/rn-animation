@@ -6,13 +6,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { GlobalSafeAreaView } from './src/components';
 function App() {
   return (
-    <SafeAreaProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <GlobalSafeAreaView>
-          <RootNavigation />
-        </GlobalSafeAreaView>
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+    // <SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      {/* <GlobalSafeAreaView unsafeBottom> */}
+      <RootNavigation />
+      {/* </GlobalSafeAreaView> */}
+    </GestureHandlerRootView>
+    // </SafeAreaProvider>
   );
 }
 

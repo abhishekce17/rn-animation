@@ -1,21 +1,12 @@
-import { Canvas, Path, size, Skia } from '@shopify/react-native-skia';
-import { useCallback } from 'react';
-import {
-  Button,
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Canvas, Path, Skia } from '@shopify/react-native-skia';
+import { Dimensions, StyleSheet, TextInput, View } from 'react-native';
 import Animated, {
   useSharedValue,
-  useDerivedValue,
   withTiming,
   useAnimatedProps,
   Easing,
 } from 'react-native-reanimated';
+import { PressableButton } from '../../../components';
 
 const { width } = Dimensions.get('window');
 const PERCENTAGE_VALUE = [25, 50, 75, 100];
@@ -35,21 +26,6 @@ matrix.translate(-CENTER, -CENTER);
 path.transform(matrix);
 
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
-
-const PressableButton = ({
-  title,
-  onPress,
-}: {
-  title: number | string;
-  onPress: (v: number) => void;
-}) => (
-  <Pressable
-    onPress={() => onPress((title as number) / 100)}
-    style={styles.buttonStyle}
-  >
-    <Text style={styles.btnTextStyle}>{title}</Text>
-  </Pressable>
-);
 
 const Animation7 = () => {
   // 1. The Progress Pointer (0 to 1)
@@ -111,7 +87,13 @@ const Animation7 = () => {
       </View>
       <View style={styles.buttonsContainer}>
         {PERCENTAGE_VALUE.map(v => (
-          <PressableButton title={v} onPress={handlePress} key={v} />
+          <PressableButton
+            btnTextStyle={styles.btnTextStyle}
+            buttonStyle={styles.buttonStyle}
+            title={v}
+            onPress={handlePress}
+            key={v}
+          />
         ))}
       </View>
       <View style={styles.inputContainer}>
@@ -124,7 +106,12 @@ const Animation7 = () => {
           onChangeText={txt => (inputValue = txt)}
           placeholderTextColor="#d0d0d0"
         />
-        <PressableButton title="Run" onPress={handleRunPress} />
+        <PressableButton
+          btnTextStyle={styles.btnTextStyle}
+          buttonStyle={styles.buttonStyle}
+          title="Run"
+          onPress={handleRunPress}
+        />
       </View>
     </View>
   );

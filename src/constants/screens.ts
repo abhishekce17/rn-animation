@@ -7,4 +7,5 @@ export const SCREENS = {
   Animation5: 'Instagram Like',
   Animation6: 'Color Picker',
   Animation7: 'Progress Bar',
+  Animation8: 'Swip to delete',
 };

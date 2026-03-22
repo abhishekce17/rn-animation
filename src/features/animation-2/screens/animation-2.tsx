@@ -9,6 +9,8 @@ import Animated, {
 const SIZE = 80;
 const RADIUS = 150;
 
+const panGesture = Gesture.Pan();
+
 const Animation2 = () => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
@@ -20,11 +22,12 @@ const Animation2 = () => {
       ],
     };
   });
-  const panGesture = Gesture.Pan()
-    // .onStart(event => {
-    //   translateX.value = event.translationX;
-    //   translateY.value = event.translationY;
-    // })
+
+  // .onStart(event => {
+  //   translateX.value = event.translationX;
+  //   translateY.value = event.translationY;
+  // })
+  panGesture
     .onChange(event => {
       translateX.value += event.changeX;
       translateY.value += event.changeY;

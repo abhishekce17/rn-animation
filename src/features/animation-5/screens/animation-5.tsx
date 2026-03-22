@@ -65,12 +65,14 @@ const FloatingHeart = ({
   );
 };
 
+const tabGesture = Gesture.Tap();
+
 const Animation5 = () => {
   const [hearQueue, setHearQueue] = useState<
     { x: number; y: number; id: number }[]
   >([]);
 
-  const tabGesture = Gesture.Tap()
+  tabGesture
     .numberOfTaps(2)
     .maxDelay(300)
     .onEnd(event => {
