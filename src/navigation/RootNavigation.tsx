@@ -9,6 +9,7 @@ import {
   Animation2,
   Landing,
   Animation6,
+  Animation7,
 } from '../features';
 
 const RootStack = createNativeStackNavigator({
@@ -26,6 +27,7 @@ const RootStack = createNativeStackNavigator({
     [SCREENS.Animation4]: { screen: Animation4 },
     [SCREENS.Animation5]: { screen: Animation5 },
     [SCREENS.Animation6]: { screen: Animation6 },
+    [SCREENS.Animation7]: { screen: Animation7 },
   },
 });
 

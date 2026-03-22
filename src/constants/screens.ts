@@ -6,4 +6,5 @@ export const SCREENS = {
   Animation4: '3D Geometry',
   Animation5: 'Instagram Like',
   Animation6: 'Color Picker',
+  Animation7: 'Progress Bar',
 };
