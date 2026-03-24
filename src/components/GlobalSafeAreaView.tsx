@@ -34,7 +34,7 @@ export const GlobalSafeAreaView = ({
         { backgroundColor }, // Apply dynamic background
         {
           // Apply padding ONLY if we want it to be "safe"
-          paddingTop: unsafeTop ? 0 : insets.top,
+          // paddingTop: unsafeTop ? 0 : insets.top,
           paddingBottom: unsafeBottom ? 0 : insets.bottom,
         },
         style, // Allow custom styles to override

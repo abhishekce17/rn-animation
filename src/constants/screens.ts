@@ -8,4 +8,5 @@ export const SCREENS = {
   Animation6: 'Color Picker',
   Animation7: 'Progress Bar',
   Animation8: 'Swip to delete',
+  Animation9: 'Sliding Counter',
 };

@@ -13,12 +13,13 @@ import {
   Animation6,
   Animation7,
   Animation8,
+  Animation9,
 } from '../features';
 
 const CustomHeader = ({ navigation, route }: any) => {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.headerContainer, { paddingTop: insets.top }]}>
+    <View style={[styles.headerContainer, { paddingTop: insets.top - 10 }]}>
       <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backText}>←</Text>
       </Pressable>
@@ -46,6 +47,7 @@ const RootStack = createNativeStackNavigator({
     [SCREENS.Animation6]: { screen: Animation6 },
     [SCREENS.Animation7]: { screen: Animation7 },
     [SCREENS.Animation8]: { screen: Animation8 },
+    [SCREENS.Animation9]: { screen: Animation9 },
   },
 });
 
