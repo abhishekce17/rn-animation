@@ -8,10 +8,11 @@ import { GlobalSafeAreaView, NetworkLoggerOverlay } from './src/components';
 import { HotUpdater } from "@hot-updater/react-native";
 
 function App() {
+  const theme = useColorScheme();
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <GlobalSafeAreaView unsafeBottom>
+        <GlobalSafeAreaView unsafeBottom barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} >
           <RootNavigation />
         </GlobalSafeAreaView>
         <NetworkLoggerOverlay />

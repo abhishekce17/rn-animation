@@ -9,4 +9,5 @@ export const SCREENS = {
   Animation7: 'Progress Bar',
   Animation8: 'Swip to delete',
   Animation9: 'Sliding Counter',
+  Animation10: 'Clock Loader',
 };
