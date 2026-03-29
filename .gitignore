@@ -73,3 +73,9 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+# hot-updater
+.hot-updater/output
+# hot-updater
+.env.hotupdater
+.hot-updater/log
+/dist

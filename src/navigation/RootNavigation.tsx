@@ -19,7 +19,7 @@ import {
 const CustomHeader = ({ navigation, route }: any) => {
   const insets = useSafeAreaInsets();
   return (
-    <View style={[styles.headerContainer, { paddingTop: insets.top - 10 }]}>
+    <View style={[styles.headerContainer]}>
       <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
         <Text style={styles.backText}>←</Text>
       </Pressable>
