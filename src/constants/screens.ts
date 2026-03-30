@@ -10,4 +10,5 @@ export const SCREENS = {
   Animation8: 'Swip to delete',
   Animation9: 'Sliding Counter',
   Animation10: 'Clock Loader',
+  Animation11: 'Scroll List',
 };

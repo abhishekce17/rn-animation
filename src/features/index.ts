@@ -9,3 +9,4 @@ export { default as Animation7 } from './animation-7/screens/animation-7';
 export { default as Animation8 } from './animation-8/screens/animation-8';
 export { default as Animation9 } from './animation-9/screens/animation-9';
 export { default as Animation10 } from './animation-10/screens/animation-10';
+export { default as Animation11 } from './animation-11/screens/animation-11';

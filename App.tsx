@@ -12,7 +12,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <GlobalSafeAreaView unsafeBottom barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} >
+        <GlobalSafeAreaView barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} >
           <RootNavigation />
         </GlobalSafeAreaView>
         <NetworkLoggerOverlay />
