@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" id="Horizontal-Menu-Square--Streamline-Sharp" height="24" width="24">
+  <desc>
+    Horizontal Menu Square Streamline Icon: https://streamlinehq.com
+  </desc>
+  <g id="horizontal-menu-square--navigation-dots-three-square-button-horizontal-menu">
+    <path fill="#000000" d="M23 1H1v22h22V1Z" stroke-width="1"></path>
+    <path fill="#ffffff" d="M6 11h2v2H6z" stroke-width="1"></path>
+    <path fill="#ffffff" d="M11 11h2v2h-2z" stroke-width="1"></path>
+    <path fill="#ffffff" d="M16 11h2v2h-2z" stroke-width="1"></path>
+  </g>
+</svg>

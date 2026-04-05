@@ -1,4 +1,12 @@
-export { default as Cross } from "./cross.svg";
-export { default as Plus } from "./plus.svg";
-export { default as Minus } from "./minus.svg";
-export { default as Heart } from "./heart.svg";
+export { default as Cross } from './cross.svg';
+export { default as Plus } from './plus.svg';
+export { default as Minus } from './minus.svg';
+export { default as Heart } from './heart.svg';
+export { default as SquareMenu } from './SuareMenu.svg';
+export { default as Projects } from './Projects.svg';
+export { default as Blog } from './Blogger.svg';
+export { default as Contact } from './Contacts.svg';
+export { default as About } from './About.svg';
+export { default as Careers } from './Careers.svg';
+export { default as ChevronRight } from './ChevronRight.svg';
+export { default as ArrowRight } from './ArrowRight.svg';
