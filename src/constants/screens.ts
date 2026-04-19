@@ -12,4 +12,5 @@ export const SCREENS = {
   Animation10: 'Clock Loader',
   Animation11: 'Scroll List',
   Animation12: 'Header Toggle',
+  Animation13: 'Particle',
 };

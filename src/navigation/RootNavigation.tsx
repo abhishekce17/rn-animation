@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStaticNavigation } from '@react-navigation/native';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SCREENS } from '../constants/screens';
 import {
   Animation1,
@@ -17,10 +16,10 @@ import {
   Animation10,
   Animation11,
   Animation12,
+  Animation13,
 } from '../features';
 
 const CustomHeader = ({ navigation, route }: any) => {
-  const insets = useSafeAreaInsets();
   return (
     <View style={[styles.headerContainer]}>
       <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
@@ -52,8 +51,9 @@ const RootStack = createNativeStackNavigator({
     [SCREENS.Animation8]: { screen: Animation8 },
     [SCREENS.Animation9]: { screen: Animation9 },
     [SCREENS.Animation10]: { screen: Animation10 },
-    [SCREENS.Animation11]: { screen: Animation11},
-    [SCREENS.Animation12]: { screen: Animation12},
+    [SCREENS.Animation11]: { screen: Animation11 },
+    [SCREENS.Animation12]: { screen: Animation12 },
+    [SCREENS.Animation13]: { screen: Animation13 },
   },
 });
 
