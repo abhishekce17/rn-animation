@@ -51,6 +51,17 @@ const createParticles = (
   }));
 };
 
+const updateLayer = (particlesList: Particle[], time: number) => {
+  'worklet'; // Ensure this runs on the UI thread
+  for (let i = 0; i < particlesList.length; i++) {
+    const p = particlesList[i];
+    p.x = p.baseX + Math.sin(time * p.speed + p.phaseX) * p.amplitudeX;
+    p.y = p.baseY + Math.cos(time * p.speed + p.phaseY) * p.amplitudeY;
+  }
+
+  return [...particlesList];
+};
+
 // --- 2. The Background Animation Component ---
 const DreamyBackground = () => {
   const bgParticles = useSharedValue(createParticles(40, 1.5, 3));
@@ -61,35 +72,35 @@ const DreamyBackground = () => {
     if (!frameInfo.timestamp) return;
     const time = frameInfo.timestamp;
 
-    const updateLayer = (particlesList: Particle[]) => {
-      'worklet'; // Ensure this runs on the UI thread
-      return particlesList.map(p => ({
-        ...p,
-        x: p.baseX + Math.sin(time * p.speed + p.phaseX) * p.amplitudeX,
-        y: p.baseY + Math.cos(time * p.speed + p.phaseY) * p.amplitudeY,
-      }));
-    };
-
-    bgParticles.value = updateLayer(bgParticles.value);
-    midParticles.value = updateLayer(midParticles.value);
-    fgParticles.value = updateLayer(fgParticles.value);
+    bgParticles.value = updateLayer(bgParticles.value, time);
+    midParticles.value = updateLayer(midParticles.value, time);
+    fgParticles.value = updateLayer(fgParticles.value, time);
   });
 
   const bgPath = useDerivedValue(() => {
     const path = Skia.Path.Make();
-    bgParticles.value.forEach(p => path.addCircle(p.x, p.y, p.r));
+    const particles = bgParticles.value;
+    for (let i = 0; i < particles.length; i++) {
+      path.addCircle(particles[i].x, particles[i].y, particles[i].r);
+    }
     return path;
   });
 
   const midPath = useDerivedValue(() => {
     const path = Skia.Path.Make();
-    midParticles.value.forEach(p => path.addCircle(p.x, p.y, p.r));
+    const particles = midParticles.value;
+    for (let i = 0; i < particles.length; i++) {
+      path.addCircle(particles[i].x, particles[i].y, particles[i].r);
+    }
     return path;
   });
 
   const fgPath = useDerivedValue(() => {
     const path = Skia.Path.Make();
-    fgParticles.value.forEach(p => path.addCircle(p.x, p.y, p.r));
+    const particles = fgParticles.value;
+    for (let i = 0; i < particles.length; i++) {
+      path.addCircle(particles[i].x, particles[i].y, particles[i].r);
+    }
     return path;
   });
 
@@ -111,7 +122,7 @@ const DreamyBackground = () => {
 };
 
 // --- 3. The Main App Component ---
-export default function Animation13() {
+export default function App() {
   return (
     <View style={styles.container}>
       {/* 1. The Skia Background */}
