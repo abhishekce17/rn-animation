@@ -17,6 +17,7 @@ import {
   Animation11,
   Animation12,
   Animation13,
+  Animation14,
 } from '../features';
 
 const CustomHeader = ({ navigation, route }: any) => {
@@ -54,6 +55,7 @@ const RootStack = createNativeStackNavigator({
     [SCREENS.Animation11]: { screen: Animation11 },
     [SCREENS.Animation12]: { screen: Animation12 },
     [SCREENS.Animation13]: { screen: Animation13 },
+    [SCREENS.Animation14] : {screen : Animation14}
   },
 });
 

@@ -13,4 +13,5 @@ export const SCREENS = {
   Animation11: 'Scroll List',
   Animation12: 'Header Toggle',
   Animation13: 'Particle',
+  Animation14: 'Transparent Layers'
 };
